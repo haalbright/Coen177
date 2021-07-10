@@ -1,0 +1,103 @@
+Step 1 Code Question and Output:
+The threadHello program shares the address of i and by the time go function follows that address, the value of i may have changed. The threadSynch program is different from the threadHello program through the parameters inputted to the function "go". In threadHello, the parameter is "&i" but threadSynch inputs "(Void *)(size_t)i" which is a 32 bit number, casted as a 64 bit number, which is then casted as a pointer. When that is casted as an integer in the go function, it is converted to the initial value of i. In addition, the semaphore makes it so that no more than one thread can be in that critical section at a time (the body of the "go" function).
+
+halbrigh@linux10615 coen177]$ ./thread
+Thread 0 Entered Critical Section..
+Thread 1 Entered Critical Section..
+			Thread 0 returned 
+Thread 3 Entered Critical Section..
+			Thread 1 returned 
+Thread 2 Entered Critical Section..
+Thread 4 Entered Critical Section..
+			Thread 2 returned 
+			Thread 3 returned 
+Thread 5 Entered Critical Section..
+			Thread 4 returned 
+Thread 6 Entered Critical Section..
+			Thread 5 returned 
+Thread 7 Entered Critical Section..
+			Thread 6 returned 
+Thread 8 Entered Critical Section..
+			Thread 7 returned 
+Thread 9 Entered Critical Section..
+			Thread 8 returned 
+			Thread 9 returned 
+Main thread done.
+[halbrigh@linux10615 coen177]$ 
+
+
+Step 2 Code Questions and Output:
+[halbrigh@linux10603 coen177]$ ./lab5-2
+Thread 1 Entered Critical Section..
+Thread 2 Entered Critical Section..
+Thread 0 Entered Critical Section..
+Thread 3 Entered Critical Section..
+			 Thread 0 returned 
+			 Thread 1 returned 
+			 Thread 2 returned 
+Thread 4 Entered Critical Section..
+			 Thread 3 returned 
+Thread 5 Entered Critical Section..
+			 Thread 4 returned 
+Thread 6 Entered Critical Section..
+			 Thread 5 returned 
+Thread 7 Entered Critical Section..
+			 Thread 6 returned 
+Thread 8 Entered Critical Section..
+			 Thread 7 returned 
+Thread 9 Entered Critical Section..
+			 Thread 8 returned 
+			 Thread 9 returned 
+Main thread done.
+
+
+Step 3 Code Output:
+[halbrigh@linux10617 coen177]$ ./lab5-3
+Producer -1937856768 inserted item: 4
+Producer -1988212992 inserted item: 6
+Producer -1988212992 inserted item: 6
+Consumer -1979820288 Removed item: 4
+Producer -1954642176 inserted item: 4
+Consumer -1946249472 Removed item: 6
+Consumer -1996605696 Removed item: 6
+Producer -2004998400 inserted item: 6
+Consumer -1963034880 Removed item: 4
+Producer -1937856768 inserted item: 10
+Producer -1954642176 inserted item: 10
+Producer -1971427584 inserted item: 10
+Producer -2004998400 inserted item: 2
+Consumer -1963034880 Removed item: 6
+Consumer -1979820288 Removed item: 10
+Consumer -1946249472 Removed item: 10
+Producer -1971427584 inserted item: 10
+Consumer -1996605696 Removed item: 10
+Consumer -2013391104 Removed item: 2
+Consumer -2013391104 Removed item: 10
+[halbrigh@linux10617 coen177]$ 
+
+
+Step 4 Code Output:
+[halbrigh@linux10617 coen177]$ ./lab5-4
+Producer -103479552 inserted item: 4
+Consumer -111872256 Removed item: 4
+Producer -137050368 inserted item: 8
+Producer -137050368 inserted item: 7
+Consumer -162228480 Removed item: 7
+Producer -103479552 inserted item: 6
+Consumer -128657664 Removed item: 6
+Consumer -128657664 Removed item: 8
+Producer -170621184 inserted item: 6
+Producer -170621184 inserted item: 3
+Consumer -179013888 Removed item: 3
+Consumer -179013888 Removed item: 6
+Producer -120264960 inserted item: 7
+Consumer -162228480 Removed item: 7
+Producer -153835776 inserted item: 4
+Consumer -145443072 Removed item: 4
+Producer -153835776 inserted item: 2
+Consumer -145443072 Removed item: 2
+Producer -120264960 inserted item: 10
+Consumer -111872256 Removed item: 10
+[halbrigh@linux10617 coen177]$
+
+

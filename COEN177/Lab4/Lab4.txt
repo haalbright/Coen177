@@ -1,0 +1,91 @@
+Step 1 Code Question and Output:
+This code creates 20 threads and has them output a statement (with their supposed iteration number and thread ID) to the terminal before joining them all together. All 20 threads get 'returned' (on the terminal) in order but not processed by the cpu in order of iteration number. Threads can output the same iteration number because the iteration variable location gets passed into the function and could be edited by another thread before the thread prints out its own statement. You don't get the same result if you run the code multiple times. If I was also running another demanding process there still would be no way to determine the order of results as the thread schedule will still be non-deterministic. It will likely take more time for the results to output as the additional process will make the other processes wait while being run. The variables in the function go are per thread as it passed as a local variable which thread stores in its stack. The variables' states are stored on the stack. The variables in the main function are shared state as it passed the location of the variable. The variables' states are stored on the stack.
+
+
+Hello from thread 2 with thread ID -29591808 
+Hello from thread 6 with thread ID -71555328 
+Hello from thread 2 with thread ID -37984512 
+Hello from thread 4 with thread ID -54769920 
+Hello from thread 5 with thread ID -63162624  
+Hello from thread 3 with thread ID -46377216 
+Hello from thread 7 with thread ID -79948032 
+Hello from thread 8 with thread ID -88340736 
+Hello from thread 9 with thread ID -96733440 
+Hello from thread 10 with thread ID -105126144 
+Hello from thread 13 with thread ID -130304256 
+Hello from thread 12 with thread ID -121911552 
+Hello from thread 11 with thread ID -113518848 
+Hello from thread 15 with thread ID -147089664 
+Hello from thread 15 with thread ID -138696960 
+Hello from thread 16 with thread ID -155482368 
+Hello from thread 17 with thread ID -163875072 
+Hello from thread 18 with thread ID -172267776 
+Hello from thread 19 with thread ID -180660480 
+Thread 0 returned 
+Thread 1 returned 
+Thread 2 returned 
+Thread 3 returned 
+Hello from thread 0 with thread ID -189053184 
+Thread 4 returned 
+Thread 5 returned 
+Thread 6 returned 
+Thread 7 returned 
+Thread 8 returned 
+Thread 9 returned 
+Thread 10 returned 
+Thread 11 returned 
+Thread 12 returned 
+Thread 13 returned 
+Thread 14 returned 
+Thread 15 returned 
+Thread 16 returned 
+Thread 17 returned 
+Thread 18 returned 
+Thread 19 returned 
+Main thread done.
+
+
+Step 2 Code Questions and Output:
+
+The possible outputs are that "Main thread done" could be outputted as the last line, like it did in the original code, or there could be thread statements under it. This is because the threads aren't joined together and thus the statement doesn't necessarily wait for all the threads to be completed before outputting to the terminal.
+
+[halbrigh@linux10618 coen177]$ ./Lab4-2
+Hello from thread 3 with thread ID 2139485952 
+Hello from thread 3 with thread ID 2131093248 
+Hello from thread 4 with thread ID 2122700544 
+Hello from thread 4 with thread ID 2114307840 
+Hello from thread 5 with thread ID 2105915136 
+Hello from thread 6 with thread ID 2097522432 
+Hello from thread 7 with thread ID 2089129728 
+Hello from thread 8 with thread ID 2080737024 
+Hello from thread 9 with thread ID 2072344320 
+Hello from thread 10 with thread ID 2063951616 
+Hello from thread 13 with thread ID 2038773504 
+Hello from thread 11 with thread ID 2055558912 
+Hello from thread 13 with thread ID 2047166208 
+Hello from thread 14 with thread ID 2030380800 
+Hello from thread 15 with thread ID 2021988096 
+Hello from thread 16 with thread ID 2013595392 
+Hello from thread 17 with thread ID 2005202688 
+Hello from thread 18 with thread ID 1996809984 
+Hello from thread 19 with thread ID 1988417280 
+Hello from thread 20 with thread ID 1980024576 
+Main thread done.
+
+
+
+Step 3 Code Output:
+I made it so the matrices would be 2x2 so its easier to see and calculate to check if it is correct.
+
+[halbrigh@linux10618 coen177]$ ./Lab4-3
+| 8.000000  | 7.000000  | 
+| 8.000000  | 1.000000  | 
+MatrixB: 
+| 4.000000  | 4.000000  | 
+| 1.000000  | 2.000000  | 
+
+| 39.000000  | 46.000000  | 
+| 33.000000  | 34.000000  | 
+
+
+

@@ -1,0 +1,171 @@
+Step 1 Code Output:
+[halbrigh@linux10607 coen177]$ gcc lab3_1.c -lpthread -o Lab3q1
+[halbrigh@linux10607 coen177]$ ./Lab3q1
+lab1-2.sh
+lab1.sh
+Lab2
+lab202.c
+Lab202.c
+lab2-1.c
+lab2-3.c
+lab2-4.c
+Lab2q2
+Lab2q3
+Lab2q4
+lab3_1.c
+lab3_2.c
+Lab3q1
+Lab3q2
+
+Notes: Program forks, first child takes from the downstream and sends it to stdin. Second child takes from upstream and sends it to stdout. 
+
+Step 2 Code Output:
+
+[halbrigh@linux10607 coen177]$ gcc lab3_2.c -lpthread -o Lab3q2
+[halbrigh@linux10607 coen177]$ ./Lab3q2
+
+
+Reader on the downstream end of the pipe 
+Writer on the upstream end of the pipe -> 1 arguments 
+. / L a b 3 q 2
+
+Notes: First child closes downstream end and writes argument to upstream end. Second child closes upstream end and writes from buffer and puts spaces between each character.
+
+Step 3 Code Output:
+[halbrigh@linux10617 coen177]$ gcc lab3_2.c -lpthread -o Lab3s2
+[halbrigh@linux10617 coen177]$ ./Lab3s2
+
+
+Writer on the upstream end of the pipe -> 1 arguments 
+Reader on the downstream end of the pipe 
+. / L a b 3 s 2 
+l a b 1 - 2 . s h 
+ l a b 1 . s h 
+ l a b 2 
+ L a b 2 
+ l a b 2 0 2 . c 
+ L a b 2 0 2 . c 
+ l a b 2 - 1 . c 
+ l a b 2 - 
+3 . c 
+ l a b 2 - 4 . c 
+ L a b 2 q 2 
+ L a b 2 q 3 
+ L a b 2 q 4 
+ L a b 2 t e s t 
+ l a b 2 t e s t . c 
+ l a b 3 _ 1 
+. c 
+ l a b 3 _ 2 . c 
+ L a b 3 - 3 
+ l a b 3 _ 3 . c 
+ l a b 3 - 3 . c 
+ L a b 3 _ 3 . c 
+ L a b 3 - 3 . c 
+ L a b 3 q 
+1 
+ L a b 3 q 2 
+ L a b 3 s 2 
+ L a b 3 s 4 
+ l a b 3 s 4 . c 
+ L a b 3 s 5 
+ l a b 3 s 5 . c 
+ L a b 3 s 6 
+ l a b 3 s 
+6 . c 
+ L a b 4 - 1 
+ l a b 4 - 1 . c 
+ L a b 4 - 2 
+ l a b 4 - 2 . c 
+ L a b 4 - 3 
+ l a b 4 - 3 . c 
+ l a b 4 - 3 . c 
+l 
+
+Step 4 Code Output:
+
+[halbrigh@linux10617 coen177]$ gcc lab3s4.c -lpthread -o Lab3s4
+[halbrigh@linux10617 coen177]$ ./Lab3s4
+root:x:0:0:root:/root:/bin/bash
+rootbash:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+
+Step 5 Code Output:
+
+[halbrigh@linux10617 coen177]$ gcc lab3s5.c -lpthread -o Lab3s5
+[halbrigh@linux10617 coen177]$ ./Lab3s5
+What is the message?Hi
+
+Message will print out below 
+Hi 
+
+Step 6 Oberservation and Code Output:
+
+There are 10 threads created but only 9 values of i used (0, 1, 3, 4, 5, 6, 7, 8, 9). Iteration number (value of i) 3 gets used twice while iteration number 2 is missing. This happens because the location of i is passed in the creation of threads instead of the value. By the time the hello message from the second iteration is outputted to the terminal, it already was changed from 2 to 3.
+
+
+
+[halbrigh@linux10617 coen177]$ ./Lab3s6
+Hello from thread 1203341056 with iteration 1 
+Hello from thread 1194948352 with iteration 3 
+Hello from thread 1161377536 with iteration 6 
+Hello from thread 1152984832 with iteration 7 
+Hello from thread 1169770240 with iteration 5 
+Hello from thread 1178162944 with iteration 4 
+Hello from thread 1144592128 with iteration 8 
+Hello from thread 1186555648 with iteration 4 
+Hello from thread 1136199424 with iteration 9 
+Thread 0 returned
+Thread 1 returned
+Thread 2 returned
+Thread 3 returned
+Thread 4 returned
+Hello from thread 1127806720 with iteration 0 
+Thread 5 returned
+Thread 6 returned
+Thread 7 returned
+Thread 8 returned
+Thread 9 returned
+Main thread done.
+
+
+Step 7 Observation and Code Output:
+The inputs to pthread_create() need to not be edited after it is created. This was fixed by creating an array which saves the iteration number separately. This way the iteration numbers won't get overwritten.
+
+[halbrigh@linux10617 coen177]$ gcc Lab3_3.c -lpthread -o Lab3-3
+[halbrigh@linux10617 coen177]$ ./Lab3-3
+Hello from thread 1957934848 with iteration 2
+Hello from thread 1932756736 with iteration 5
+Hello from thread 1924364032 with iteration 6
+Hello from thread 1949542144 with iteration 3
+Hello from thread 1941149440 with iteration 4
+Hello from thread 1966327552 with iteration 1
+Hello from thread 1974720256 with iteration 0
+Hello from thread 1915971328 with iteration 7
+Hello from thread 1907578624 with iteration 8
+Thread 0 returned
+Thread 1 returned
+Thread 2 returned
+Hello from thread 1899185920 with iteration 9
+Thread 3 returned
+Thread 4 returned
+Thread 5 returned
+Thread 6 returned
+Thread 7 returned
+Thread 8 returned
+Thread 9 returned
+Main thread done.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
